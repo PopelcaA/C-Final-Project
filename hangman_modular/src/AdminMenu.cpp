@@ -55,7 +55,7 @@ void AdminMenu::run(const std::string& wordFile,
                 if (std::system(cmd.c_str()) != 0) {
                     std::cerr << RED << "Failed to launch game\n" << RESET;
                 }
-                break;
+                return;
             }
         }
 
@@ -96,7 +96,7 @@ void AdminMenu::addWord(const std::string& file) {
         }
         if (!std::regex_match(w, alpha_only)) {
             std::cout << RED
-                      << "Only letters A–Z allowed. Please try again.\n"
+                      << "Only letters A-Z allowed. Please try again.\n"
                       << RESET;
             continue;
         }

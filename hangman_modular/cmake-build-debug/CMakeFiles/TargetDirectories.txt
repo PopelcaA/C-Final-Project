@@ -1,4 +1,4 @@
-C:/Users/Umbre/Documents/GitHub/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/hangman_game.dir
-C:/Users/Umbre/Documents/GitHub/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/hangman_admin.dir
-C:/Users/Umbre/Documents/GitHub/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Umbre/Documents/GitHub/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Andrei/CLionProjects/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/hangman_game.dir
+C:/Users/Andrei/CLionProjects/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/hangman_admin.dir
+C:/Users/Andrei/CLionProjects/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Andrei/CLionProjects/C-Final-Project/hangman_modular/cmake-build-debug/CMakeFiles/rebuild_cache.dir
