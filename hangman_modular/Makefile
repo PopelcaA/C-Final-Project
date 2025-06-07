@@ -1,18 +1,26 @@
-# Simple Makefile for the modular Hangman project
+# Compiler and flags
 CXX      ?= g++
 CXXFLAGS ?= -std=c++17 -Wall -Wextra -O2
 
-# folders
+# include path
 INCLUDES := -Iinclude
+
+# folders
 SRCDIR   := src
 OBJDIR   := build
 BINDIR   := bin
 
-# source files
-SRC := $(wildcard $(SRCDIR)/*.cpp)
-OBJ := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRC))
+# all .cpp files under src/
+SRC      := $(wildcard $(SRCDIR)/*.cpp)
 
-# executables
+# object files in build/
+OBJ      := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRC))
+
+# entry‐point objects
+MAIN_ADMIN_OBJ := main_admin.o
+MAIN_GAME_OBJ  := main_game.o
+
+# final executables
 ADMIN_EXE := $(BINDIR)/hangman_admin
 GAME_EXE  := $(BINDIR)/hangman_game
 
@@ -20,22 +28,27 @@ GAME_EXE  := $(BINDIR)/hangman_game
 
 all: dirs $(ADMIN_EXE) $(GAME_EXE)
 
-# pattern rule
+# compile src/*.cpp → build/*.o
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-$(ADMIN_EXE): $(OBJ) main_admin.o
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
-
-$(GAME_EXE): $(OBJ) main_game.o
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
-
-main_admin.o: main_admin.cpp
+# compile main_admin.cpp → main_admin.o
+$(MAIN_ADMIN_OBJ): main_admin.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-main_game.o: main_game.cpp
+# compile main_game.cpp → main_game.o
+$(MAIN_GAME_OBJ): main_game.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
+# link admin executable
+$(ADMIN_EXE): $(OBJ) $(MAIN_ADMIN_OBJ)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+# link game executable
+$(GAME_EXE): $(OBJ) $(MAIN_GAME_OBJ)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+# ensure build/ and bin/ exist
 dirs:
 	@mkdir -p $(OBJDIR) $(BINDIR)
 

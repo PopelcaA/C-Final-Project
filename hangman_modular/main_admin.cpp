@@ -1,14 +1,19 @@
-#include "AdminTool.hpp"
-#include "WordRepository.hpp"
-#include "Leaderboard.hpp"
-#include "HistoryLog.hpp"
+#include "AdminMenu.h"
+#include "Colors.h"
+#include <string>
+#include <filesystem>
 
-int main(int argc, char** argv)
-{
-    WordRepository dict;
-    Leaderboard    lb;
-    HistoryLog     hist;
+int main() {
+    enableAnsiColors();
 
-    AdminTool tool(dict, lb, hist);
-    return tool.dispatch(argc, argv);
+    std::string dataDir  = "Data/";
+    // ensure Data/ directory exists
+    std::filesystem::create_directories(dataDir);
+
+    std::string wordFile = dataDir + "words.txt";
+    std::string lbFile   = dataDir + "leaderboard.txt";
+    std::string histFile = dataDir + "history.txt";
+
+    AdminMenu::run(wordFile, lbFile, histFile);
+    return 0;
 }
